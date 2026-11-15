@@ -1,0 +1,4910 @@
+/* ==========================================================================
+   THE COFFEE LAB - STYLESHEET
+   Aesthetics: Warm Artisanal Espresso, Cream Foam, Modern POS Architecture
+   ========================================================================== */
+
+:root {
+  --bg-main: #F5F0E8;
+  --bg-surface: #F5F0E8;
+  --bg-subtle: #D9C8B3;
+  --bg-dark: #49372C;
+  --bg-card: #F5F0E8;
+
+  --text-primary: #49372C;
+  --text-secondary: #49372C;
+  --text-muted: #49372C;
+  --text-inverse: #F5F0E8;
+
+  --coffee-accent: #87411C;
+  --coffee-accent-hover: #362013;
+  --coffee-accent-subtle: #D69A55;
+
+  --espresso-dark: #49372C;
+  --espresso-border: #D9C8B3;
+  --card-border: #D9C8B3;
+
+  --role-admin: #7c2d12;
+  --role-admin-bg: #ffedd5;
+  --role-cashier: #1e3a8a;
+  --role-cashier-bg: #dbeafe;
+  --role-guest: #14532d;
+  --role-guest-bg: #dcfce7;
+
+  --success: #15803d;
+  --warning: #b45309;
+  --danger: #b91c1c;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(42, 27, 18, 0.06);
+  --shadow-md: 0 4px 12px rgba(42, 27, 18, 0.08);
+  --shadow-lg: 0 12px 28px rgba(42, 27, 18, 0.12);
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   HEADER & GLOBAL NAVIGATION
+   ========================================================================== */
+
+.app-header {
+  background-color: var(--espresso-dark);
+  color: var(--text-inverse);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  display: block;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #F5F0E8;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #F5F0E8;
+}
+
+.brand-tagline {
+  font-size: 0.725rem;
+  color: #cbb4a3;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.role-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.role-nav .nav-link {
+  color: #e5d7cc;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-full);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.role-nav .nav-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #F5F0E8;
+}
+
+.role-nav .nav-link.active {
+  background: var(--coffee-accent);
+  color: #F5F0E8;
+}
+
+.auth-pill-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.auth-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.badge-guest {
+  background-color: var(--role-guest-bg);
+  color: var(--role-guest);
+}
+
+.badge-cashier {
+  background-color: var(--role-cashier-bg);
+  color: var(--role-cashier);
+}
+
+.badge-admin {
+  background-color: var(--role-admin-bg);
+  color: var(--role-admin);
+}
+
+.btn-switch-role {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #F5F0E8;
+  font-size: 0.775rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.btn-switch-role:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ==========================================================================
+   LAYOUT & CONTAINER
+   ========================================================================== */
+
+.main-content {
+  flex: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.view-section {
+  display: none;
+}
+
+.view-section.active {
+  display: block;
+}
+
+.sub-view {
+  display: none;
+}
+
+.sub-view.active {
+  display: block;
+}
+
+/* ==========================================================================
+   BUTTONS & FORMS
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.btn-primary {
+  background-color: var(--coffee-accent);
+  color: #F5F0E8;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--coffee-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(184, 109, 41, 0.25);
+}
+
+.btn-primary:disabled {
+  background-color: #D9C8B3;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: var(--bg-subtle);
+  color: var(--text-primary);
+  border-color: var(--espresso-border);
+}
+
+.btn-secondary:hover {
+  background-color: #ebdcca;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--coffee-accent);
+  color: var(--coffee-accent);
+}
+
+.btn-outline:hover {
+  background-color: var(--coffee-accent);
+  color: #F5F0E8;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+.btn-lg {
+  padding: 0.85rem 1.5rem;
+  font-size: 0.95rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-text-danger {
+  background: none;
+  border: none;
+  color: var(--danger);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.btn-text-danger:hover {
+  text-decoration: underline;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+label {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--espresso-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  background-color: #F5F0E8;
+  color: var(--text-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--coffee-accent);
+  box-shadow: 0 0 0 3px rgba(184, 109, 41, 0.15);
+}
+
+/* ==========================================================================
+   VIEW 1: HOME & ABOUT (+ RESERVATIONS)
+   ========================================================================== */
+
+.home-hero {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  background: linear-gradient(135deg, #49372C 0%, #362013 100%);
+  color: #F5F0E8;
+  border-radius: var(--radius-lg);
+  padding: 3.5rem 3rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  background: rgba(184, 109, 41, 0.25);
+  border: 1px solid rgba(184, 109, 41, 0.5);
+  color: #D9C8B3;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 2.75rem;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  color: #F5F0E8;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #dfcfc2;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.hero-actions .btn-secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: #F5F0E8;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.hero-actions .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.hero-actions .btn-outline {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #F5F0E8;
+}
+
+.hero-actions .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.hero-highlights-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.hl-tag {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #D9C8B3;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.highlight-item strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #F5F0E8;
+  margin-bottom: 0.2rem;
+}
+
+.highlight-item small {
+  color: #d1bfb2;
+  font-size: 0.825rem;
+  line-height: 1.4;
+  display: block;
+}
+
+/* Feature Strip */
+.feature-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.strip-item {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.strip-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--coffee-accent);
+}
+
+.strip-num {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--coffee-accent);
+  background: var(--coffee-accent-subtle);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.strip-item h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--espresso-dark);
+}
+
+.strip-item p {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* About Section */
+.about-section {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.section-tag {
+  color: var(--coffee-accent);
+  font-weight: 800;
+  font-size: 0.775rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-story h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--espresso-dark);
+  line-height: 1.25;
+  margin-bottom: 1.25rem;
+}
+
+.about-story p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.about-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--espresso-border);
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-num {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--coffee-accent);
+}
+
+.stat-desc {
+  font-size: 0.775rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.about-hours-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--espresso-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+
+.about-hours-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  margin-bottom: 1.25rem;
+  color: var(--espresso-dark);
+}
+
+.visit-info-line {
+  display: flex;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+  align-items: flex-start;
+}
+
+.visit-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.visit-info-line strong {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--espresso-dark);
+  margin-bottom: 0.15rem;
+}
+
+.visit-info-line p {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.map-embed-wrapper {
+  margin: 1.25rem 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--espresso-border);
+  box-shadow: var(--shadow-sm);
+  background: #F5F0E8;
+}
+
+.map-embed-wrapper iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+.map-actions {
+  padding: 0.65rem;
+  background: #F5F0E8;
+  border-top: 1px solid var(--espresso-border);
+}
+
+.visit-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--espresso-border);
+}
+
+.visit-pill {
+  background: #F5F0E8;
+  border: 1px solid var(--espresso-border);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   RESERVATIONS SECTION (Inside Home/About)
+   ========================================================================== */
+
+.reservation-section {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.reservation-header {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 2.5rem;
+}
+
+.reservation-header h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--espresso-dark);
+  margin-bottom: 0.5rem;
+}
+
+.reservation-header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.reservation-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.reservation-form-card {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.reservation-form-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  margin-bottom: 1.5rem;
+  color: var(--espresso-dark);
+}
+
+.reservation-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.reservations-tracker-card {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--espresso-border);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar-header h3 {
+  font-size: 1.05rem;
+}
+
+.my-reservations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.empty-res-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-muted);
+}
+
+.empty-res-state span {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.res-ticket-item {
+  background: #F5F0E8;
+  border: 1px dashed var(--coffee-accent);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem;
+}
+
+.res-ticket-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.res-code {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--coffee-accent);
+}
+
+.res-ticket-details {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 0.6rem;
+}
+
+.res-ticket-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+
+.res-policy-card {
+  background: var(--bg-subtle);
+  border: 1px solid var(--espresso-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+
+.res-policy-card h4 {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.res-policy-card ul {
+  padding-left: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   VIEW 2: DEDICATED AUTHENTICATION (LOG IN & SIGN UP)
+   ========================================================================== */
+
+.auth-page-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  align-items: stretch;
+  max-width: 1100px;
+  margin: 1.5rem auto;
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.auth-hero-banner {
+  background: linear-gradient(145deg, #49372C 0%, #3a2214 100%);
+  color: #F5F0E8;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.auth-hero-banner h2 {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.auth-hero-banner p {
+  color: #d8c8ba;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.auth-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.benefit-row {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+.benefit-tag {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #D9C8B3;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.benefit-row strong {
+  font-size: 0.9rem;
+  color: #F5F0E8;
+  display: block;
+}
+
+.benefit-row p {
+  font-size: 0.8rem;
+  color: #cfbeaf;
+  margin: 0;
+}
+
+.quick-demo-login-box {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+
+.quick-demo-login-box h4 {
+  font-size: 0.825rem;
+  color: #D9C8B3;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.demo-buttons-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.demo-buttons-row .btn-outline {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #F5F0E8;
+  font-size: 0.75rem;
+}
+
+.demo-buttons-row .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.auth-form-card {
+  padding: 2.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--espresso-border);
+  margin-bottom: 1.5rem;
+}
+
+.auth-tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.auth-tab-btn.active {
+  color: var(--coffee-accent);
+  border-bottom-color: var(--coffee-accent);
+}
+
+.auth-tab-panel {
+  display: none;
+}
+
+.auth-tab-panel.active {
+  display: block;
+}
+
+.auth-tab-header {
+  margin-bottom: 1.5rem;
+}
+
+.auth-tab-header h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--espresso-dark);
+}
+
+.auth-tab-header p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.login-hint {
+  background: var(--bg-subtle);
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  font-size: 0.775rem;
+  color: var(--text-secondary);
+}
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 1.25rem 0;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--espresso-border);
+}
+
+.divider span {
+  position: relative;
+  background: #F5F0E8;
+  padding: 0 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   VIEW 3: GUEST ORDERING EXPERIENCE
+   ========================================================================== */
+
+.section-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+}
+
+.section-banner h2 {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  color: var(--espresso-dark);
+}
+
+.section-banner p {
+  color: var(--text-secondary);
+  font-size: 0.925rem;
+}
+
+.menu-search-wrapper input {
+  min-width: 300px;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.category-tabs .tab-btn {
+  background: #F5F0E8;
+  border: 1px solid var(--espresso-border);
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  color: var(--text-secondary);
+}
+
+.category-tabs .tab-btn:hover {
+  border-color: var(--coffee-accent);
+  color: var(--coffee-accent);
+}
+
+.category-tabs .tab-btn.active {
+  background: var(--espresso-dark);
+  color: #F5F0E8;
+  border-color: var(--espresso-dark);
+}
+
+.menu-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.menu-card {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.menu-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--coffee-accent);
+}
+
+.menu-card.out-of-stock {
+  opacity: 0.6;
+  filter: grayscale(0.5);
+}
+
+.out-of-stock-pill {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ef4444;
+  color: #F5F0E8;
+  font-size: 0.675rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+}
+
+.menu-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.item-emoji {
+  font-size: 2.25rem;
+  background: var(--bg-subtle);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+}
+
+.item-meta h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--espresso-dark);
+  margin-bottom: 0.15rem;
+}
+
+.item-category-tag {
+  font-size: 0.725rem;
+  color: var(--coffee-accent);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.item-desc {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.menu-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--espresso-border);
+  padding-top: 0.75rem;
+}
+
+.item-price {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--espresso-dark);
+}
+
+.item-cal {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Guest Cart Sidebar */
+.guest-cart-panel {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 80px;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--espresso-border);
+  margin-bottom: 1rem;
+}
+
+.cart-header h3 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+}
+
+.cart-count-badge {
+  background: var(--coffee-accent-subtle);
+  color: var(--coffee-accent);
+  font-size: 0.775rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.cart-items-list {
+  max-height: 380px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.empty-cart-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-muted);
+}
+
+.empty-cart-state .empty-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.cart-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.65rem 0;
+  border-bottom: 1px dashed var(--espresso-border);
+}
+
+.cart-item-info h5 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--espresso-dark);
+}
+
+.cart-item-mods {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+.cart-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+
+.cart-item-price {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+  padding: 2px 4px;
+}
+
+.qty-btn {
+  background: none;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+}
+
+.qty-number {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.cart-summary {
+  background: var(--bg-subtle);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+
+.summary-line.total-line {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--espresso-dark);
+  border-top: 1px solid var(--espresso-border);
+  padding-top: 0.6rem;
+  margin-top: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+/* Guest Orders Tracker View */
+.orders-header {
+  margin-bottom: 1.5rem;
+}
+
+.guest-orders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 800px;
+}
+
+.guest-order-card {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--espresso-border);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.order-status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.775rem;
+  text-transform: uppercase;
+}
+
+.status-pending { background: #fef3c7; color: #92400e; }
+.status-preparing { background: #dbeafe; color: #1e40af; }
+.status-ready { background: #dcfce7; color: #15803d; }
+.status-completed { background: #f3f4f6; color: #4b5563; }
+.status-confirmed { background: #dcfce7; color: #15803d; }
+.status-seated { background: #dbeafe; color: #1e40af; }
+.status-cancelled { background: #fee2e2; color: #b91c1c; }
+
+/* ==========================================================================
+   VIEW 4: CASHIER POS SYSTEM
+   ========================================================================== */
+
+.view-sub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--espresso-border);
+}
+
+.pos-status-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.dot-online {
+  width: 10px;
+  height: 10px;
+  background-color: var(--success);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.pos-mode-switcher {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-sub-nav {
+  background: #F5F0E8;
+  border: 1px solid var(--espresso-border);
+  color: var(--text-secondary);
+}
+
+.btn-sub-nav.active {
+  background: var(--espresso-dark);
+  color: #F5F0E8;
+  border-color: var(--espresso-dark);
+}
+
+.cashier-tab-content {
+  display: none;
+}
+
+.cashier-tab-content.active {
+  display: block;
+}
+
+.pos-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1.5rem;
+}
+
+.pos-catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pos-categories {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.pos-cat-btn {
+  background: #F5F0E8;
+  border: 1px solid var(--espresso-border);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pos-cat-btn.active {
+  background: var(--coffee-accent);
+  color: #F5F0E8;
+  border-color: var(--coffee-accent);
+}
+
+.pos-search {
+  max-width: 220px;
+}
+
+.pos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.85rem;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.pos-item-btn {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 110px;
+  transition: all 0.15s ease;
+}
+
+.pos-item-btn:hover {
+  border-color: var(--coffee-accent);
+  transform: scale(1.02);
+  box-shadow: var(--shadow-sm);
+}
+
+.pos-item-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pos-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pos-item-emoji {
+  font-size: 1.5rem;
+}
+
+.pos-item-name {
+  font-weight: 700;
+  font-size: 0.875rem;
+  margin-top: 0.35rem;
+  color: var(--espresso-dark);
+}
+
+.pos-item-price {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--coffee-accent);
+}
+
+.pos-ticket-panel {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 180px);
+  box-shadow: var(--shadow-md);
+}
+
+.ticket-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--espresso-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticket-header h3 {
+  font-size: 1.1rem;
+}
+
+.ticket-id {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.customer-info-bar {
+  padding: 0.75rem 1rem;
+  background: #F5F0E8;
+  border-bottom: 1px solid var(--espresso-border);
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 0.5rem;
+}
+
+.pos-ticket-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pos-empty-ticket {
+  text-align: center;
+  color: var(--text-muted);
+  margin-top: 3rem;
+}
+
+.pos-totals-block {
+  padding: 1.25rem;
+  background: #fcf9f5;
+  border-top: 1px solid var(--espresso-border);
+}
+
+.pos-action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+/* Kitchen Kanban Board */
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+  min-height: 550px;
+}
+
+.kanban-col {
+  background: #D9C8B3;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--espresso-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.col-header {
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--espresso-border);
+  background: #F5F0E8;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.col-header.pending-header { border-top: 4px solid #f59e0b; }
+.col-header.preparing-header { border-top: 4px solid #3b82f6; }
+.col-header.ready-header { border-top: 4px solid #10b981; }
+.col-header.completed-header { border-top: 4px solid #6b7280; }
+
+.col-count {
+  background: rgba(0, 0, 0, 0.08);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+}
+
+.col-body {
+  padding: 0.75rem;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.kitchen-card {
+  background: #F5F0E8;
+  border-radius: var(--radius-sm);
+  padding: 0.9rem;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--coffee-accent);
+}
+
+.kitchen-card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.kitchen-card-items {
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  padding: 0.4rem 0;
+  border-top: 1px dashed var(--espresso-border);
+  border-bottom: 1px dashed var(--espresso-border);
+}
+
+.kitchen-item-row {
+  margin-bottom: 0.25rem;
+}
+
+.kitchen-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+/* ==========================================================================
+   VIEW 5: ADMIN MANAGEMENT & ANALYTICS
+   ========================================================================== */
+
+.admin-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.admin-top-bar h2 {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+}
+
+.admin-top-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--espresso-dark);
+}
+
+.stat-trend {
+  font-size: 0.75rem;
+}
+
+.stat-trend.positive { color: var(--success); }
+.stat-trend.neutral { color: var(--text-muted); }
+
+.admin-tabs-nav {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--espresso-border);
+  margin-bottom: 1.5rem;
+}
+
+.admin-tab-btn {
+  background: none;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+
+.admin-tab-btn.active {
+  color: var(--coffee-accent);
+  border-bottom-color: var(--coffee-accent);
+}
+
+.admin-tab-content {
+  display: none;
+}
+
+.admin-tab-content.active {
+  display: block;
+}
+
+.admin-table-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.admin-table-controls input {
+  max-width: 320px;
+}
+
+/* Tables */
+.table-container {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.data-table th {
+  background: #F5F0E8;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--espresso-border);
+}
+
+.data-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--espresso-border);
+  vertical-align: middle;
+}
+
+.data-table tr:hover {
+  background-color: #F5F0E8;
+}
+
+.stock-toggle-btn {
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+
+.stock-in {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.stock-out {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Staff Grid */
+.staff-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.staff-card {
+  background: #F5F0E8;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.staff-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  background: var(--bg-subtle);
+}
+
+.staff-details h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+}
+
+.staff-details p {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  margin: 0.5rem 0;
+}
+
+/* ==========================================================================
+   MODALS
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(20, 13, 8, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-card {
+  background: #F5F0E8;
+  border-radius: var(--radius-lg);
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--card-border);
+  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--espresso-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--espresso-dark);
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.modal-close-btn:hover {
+  color: var(--text-primary);
+}
+
+.modal-body {
+  padding: 1.25rem;
+}
+
+.modal-footer {
+  padding: 1.25rem;
+  border-top: 1px solid var(--espresso-border);
+  background: #F5F0E8;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.customizer-section {
+  margin-bottom: 1.25rem;
+}
+
+.customizer-section h5 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.pill-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill-option {
+  padding: 0.45rem 0.85rem;
+  background: #f5eee6;
+  border: 1px solid var(--espresso-border);
+  border-radius: var(--radius-full);
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pill-option:hover {
+  background: #ede2d3;
+}
+
+.pill-option.active {
+  background: var(--espresso-dark);
+  color: #F5F0E8;
+  border-color: var(--espresso-dark);
+}
+
+.addons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.addon-checkbox-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--espresso-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.addon-checkbox-label input {
+  margin-right: 0.5rem;
+  width: auto;
+}
+
+/* Payment Modal Specific */
+.payment-amount-box {
+  background: var(--bg-subtle);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.payment-amount-box h1 {
+  font-size: 2.25rem;
+  color: var(--coffee-accent);
+  font-weight: 800;
+}
+
+.payment-methods {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.pay-method-radio {
+  cursor: pointer;
+}
+
+.pay-method-radio input {
+  display: none;
+}
+
+.method-card {
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  border: 1px solid var(--espresso-border);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.8rem;
+  background: #F5F0E8;
+}
+
+.pay-method-radio input:checked + .method-card {
+  background: var(--coffee-accent);
+  color: #F5F0E8;
+  border-color: var(--coffee-accent);
+}
+
+.quick-cash-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.change-due-box {
+  padding: 0.75rem;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: var(--radius-sm);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.change-due-box strong {
+  color: var(--success);
+  font-size: 1.15rem;
+}
+
+.card-simulator {
+  padding: 2rem;
+  background: #111827;
+  color: #10b981;
+  border-radius: var(--radius-md);
+  font-family: monospace;
+  text-align: center;
+}
+
+.terminal-blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Thermal Paper Receipt Styling */
+.thermal-receipt {
+  background: #fbfbf8;
+  border: 1px dashed #D9C8B3;
+  padding: 1.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #1a1a1a;
+  max-width: 340px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.receipt-center {
+  text-align: center;
+}
+
+.receipt-divider {
+  border-top: 1px dashed #555;
+  margin: 0.75rem 0;
+}
+
+/* Toasts */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toast {
+  background: var(--espresso-dark);
+  color: #F5F0E8;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  animation: slideIn 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toast-success { background: #166534; }
+.toast-error { background: #991b1b; }
+.toast-info { background: #1e3a8a; }
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .home-hero {
+    grid-template-columns: 1fr;
+    padding: 2.5rem;
+  }
+  .feature-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .reservation-layout {
+    grid-template-columns: 1fr;
+  }
+  .auth-page-container {
+    grid-template-columns: 1fr;
+  }
+  .menu-grid-container {
+    grid-template-columns: 1fr;
+  }
+  .pos-layout {
+    grid-template-columns: 1fr;
+  }
+  .pos-ticket-panel {
+    height: auto;
+  }
+  .kanban-board {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .staff-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .feature-strip {
+    grid-template-columns: 1fr;
+  }
+  .header-container {
+    flex-wrap: wrap;
+  }
+  .kanban-board {
+    grid-template-columns: 1fr;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   SUBTLE STAFF PORTAL FOOTER
+   ========================================================================== */
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px clamp(22px, 5vw, 72px);
+  background: linear-gradient(110deg, #4a2818, #6f3b20);
+  color: #f5eee5;
+  border-top: 1px solid rgba(221, 184, 139, 0.3);
+}
+.site-footer-brand { display: flex; align-items: center; gap: 11px; }
+.site-footer-brand img { width: 38px; height: 38px; object-fit: contain; border-radius: 50%; background: #f5eee5; }
+.site-footer-brand div { display: flex; flex-direction: column; gap: 2px; }
+.site-footer-brand strong { font-family: var(--font-display, 'Playfair Display', serif); font-size: 16px; }
+.site-footer-brand span, .site-footer-note { color: #d9c8b3; font-size: 11px; }
+.site-footer-staff-link { background: transparent; border: 0; color: #e2b27a; font: inherit; font-size: 12px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; padding: 7px 4px; }
+.site-footer-staff-link:hover { color: #fff3df; }
+@media (max-width: 600px) {
+  .site-footer { flex-wrap: wrap; padding: 18px 20px; }
+  .site-footer-note { order: 3; flex-basis: 100%; }
+}
+
+/* Staff Login Modal Specific */
+.staff-modal-card {
+  max-width: 460px;
+}
+
+.staff-modal-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  background: var(--bg-subtle);
+  padding: 4px;
+  border-radius: var(--radius-md);
+}
+
+.staff-tab-pill {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.staff-tab-pill.active {
+  background: var(--espresso-dark);
+  color: #F5F0E8;
+  box-shadow: var(--shadow-sm);
+}
+
+.staff-hint-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--espresso-border);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.775rem;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   CUSTOMER PROFILE & LOYALTY REWARDS SYSTEM
+   ========================================================================== */
+
+.profile-page-container {
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.profile-header-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--espresso-border);
+}
+
+.profile-header-info .profile-title {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--espresso-dark);
+  margin-top: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  max-width: 650px;
+}
+
+.profile-quick-stats {
+  display: flex;
+  gap: 1rem;
+}
+
+.profile-stat-chip {
+  background: var(--bg-surface);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.25rem;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-stat-chip.highlight {
+  background: #D9C8B3;
+  border-color: #ebd1ba;
+}
+
+.stat-chip-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.stat-chip-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--coffee-accent);
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 2.25rem;
+  align-items: start;
+}
+
+.profile-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header-styled {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.card-header-styled h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--espresso-dark);
+  margin-bottom: 0.25rem;
+}
+
+.card-header-styled p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.member-status-pill {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.profile-form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   Loyalty Connoisseur Digital Card
+   -------------------------------------------------------------------------- */
+
+.loyalty-card-visual {
+  background: linear-gradient(135deg, #49372C 0%, #3d2417 55%, #49372C 100%);
+  border: 1.5px solid #A7AE98;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  color: #F5F0E8;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(36, 22, 14, 0.35);
+  margin-bottom: 2rem;
+}
+
+.loyalty-card-visual::after {
+  content: "THE COFFEE LAB";
+  position: absolute;
+  right: -25px;
+  bottom: -20px;
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.035);
+  pointer-events: none;
+  letter-spacing: 0.1em;
+  user-select: none;
+}
+
+.loyalty-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.75rem;
+}
+
+.loyalty-card-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.loyalty-brand-icon {
+  width: 34px;
+  height: 34px;
+  background: #A7AE98;
+  color: #49372C;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.loyalty-brand-text {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #f7ebe1;
+}
+
+.loyalty-tier-tag {
+  background: rgba(212, 163, 115, 0.2);
+  color: #f3d8be;
+  border: 1px solid #A7AE98;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.775rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.loyalty-card-middle {
+  margin-bottom: 2rem;
+}
+
+.loyalty-balance-lbl {
+  font-size: 0.8rem;
+  color: #c9b09f;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.loyalty-balance-val {
+  font-family: var(--font-serif);
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #F5F0E8;
+  line-height: 1;
+}
+
+.loyalty-balance-val small {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #A7AE98;
+  margin-left: 0.35rem;
+}
+
+.loyalty-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 1rem;
+}
+
+.loyalty-card-bottom small {
+  display: block;
+  font-size: 0.7rem;
+  color: #aa9586;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+
+.loyalty-card-bottom strong {
+  font-size: 0.95rem;
+  color: #F5F0E8;
+  letter-spacing: 0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   Tier Progress Bar & Hints
+   -------------------------------------------------------------------------- */
+
+.tier-progress-section {
+  background: var(--bg-subtle);
+  border: 1px solid var(--espresso-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.tier-progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--espresso-dark);
+  margin-bottom: 0.65rem;
+}
+
+.text-accent {
+  color: var(--coffee-accent);
+}
+
+.tier-progress-track {
+  width: 100%;
+  height: 9px;
+  background: #dfd2c4;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 0.65rem;
+}
+
+.tier-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--coffee-accent) 0%, #e29547 100%);
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+.tier-perk-hint {
+  display: block;
+  font-size: 0.775rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   Rewards Voucher Catalog Grid
+   -------------------------------------------------------------------------- */
+
+.rewards-shop-section {
+  margin-bottom: 2.25rem;
+}
+
+.shop-header {
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shop-header h4 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--espresso-dark);
+}
+
+.shop-header small {
+  color: var(--text-secondary);
+}
+
+.rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+}
+
+.reward-catalog-card {
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  background: var(--bg-surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.reward-catalog-card.affordable:hover {
+  border-color: var(--coffee-accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.reward-catalog-card.locked {
+  opacity: 0.7;
+  background: #F5F0E8;
+}
+
+.reward-card-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.reward-cost-tag {
+  background: #D9C8B3;
+  color: var(--coffee-accent);
+  border: 1px solid #f3d4ba;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.reward-value-tag {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.reward-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--espresso-dark);
+  margin-bottom: 0.35rem;
+}
+
+.reward-card-desc {
+  font-size: 0.775rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 1.1rem;
+  flex-grow: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Active Vouchers List
+   -------------------------------------------------------------------------- */
+
+.active-vouchers-section {
+  margin-bottom: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.vouchers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.empty-voucher-box {
+  background: var(--bg-main);
+  border: 1px dashed var(--espresso-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.empty-voucher-box p {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.empty-voucher-box small {
+  color: var(--text-muted);
+}
+
+.voucher-ticket {
+  background: #fffdfa;
+  border: 1.5px dashed var(--coffee-accent);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.voucher-ticket-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.voucher-ticket-val {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--coffee-accent);
+  background: #D9C8B3;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+}
+
+.voucher-ticket-details strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--espresso-dark);
+}
+
+.voucher-ticket-details code {
+  font-size: 0.775rem;
+  background: var(--bg-subtle);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  color: var(--text-secondary);
+}
+
+.voucher-ticket-right {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Points History Table / Items
+   -------------------------------------------------------------------------- */
+
+.points-history-section {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.points-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.points-history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0.85rem;
+  background: var(--bg-main);
+  border-radius: var(--radius-sm);
+  font-size: 0.825rem;
+}
+
+.history-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.history-pill {
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+.history-earn {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.history-redeem {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.history-desc {
+  font-weight: 600;
+  color: var(--espresso-dark);
+}
+
+.history-date {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Header User Pill with Points Badge
+   -------------------------------------------------------------------------- */
+
+.auth-user-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  color: #F5F0E8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.auth-user-pill:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--coffee-accent);
+}
+
+.user-pill-avatar {
+  width: 22px;
+  height: 22px;
+  background: var(--coffee-accent);
+  color: #F5F0E8;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-pill-name {
+  font-size: 0.825rem;
+  font-weight: 700;
+}
+
+.loyalty-pill-badge {
+  background: #dfa467;
+  color: #49372C;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+  .profile-header-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ==========================================================================
+   IN-PAGE CUSTOMER TABS & DEDICATED CART PAGE
+   ========================================================================== */
+
+.guest-sub-nav {
+  /* Hidden by default; JS (updateRoleNav) shows it only when a guest or member is logged in */
+  display: none;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.75rem;
+  overflow-x: auto;
+}
+
+.guest-sub-nav .btn-sub-nav {
+  background: var(--bg-surface);
+  border: 1px solid var(--card-border);
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+
+.guest-sub-nav .btn-sub-nav:hover {
+  background: var(--bg-subtle);
+  color: var(--espresso-dark);
+}
+
+.guest-sub-nav .btn-sub-nav.active {
+  background: var(--espresso-dark);
+  color: #F5F0E8;
+  border-color: var(--espresso-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Dedicated Cart View Page
+   -------------------------------------------------------------------------- */
+
+.cart-page-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.cart-page-banner h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--espresso-dark);
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.cart-page-banner p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.dedicated-cart-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.dedicated-cart-items-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.panel-header-simple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.panel-header-simple h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--espresso-dark);
+}
+
+.dedicated-cart-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.dedicated-cart-item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--card-border);
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.dedicated-cart-item-card:last-child {
+  border-bottom: none;
+}
+
+.cart-item-left {
+  flex: 1;
+  min-width: 200px;
+}
+
+.cart-item-cat {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--coffee-accent);
+  font-weight: 800;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.cart-item-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--espresso-dark);
+  margin-bottom: 0.4rem;
+}
+
+.cart-item-details-text {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.cart-item-details-text span {
+  display: block;
+}
+
+.cart-item-remove-btn {
+  background: none;
+  border: none;
+  color: var(--danger);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.cart-item-remove-btn:hover {
+  opacity: 0.75;
+}
+
+.cart-item-right {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.cart-item-price-col {
+  text-align: right;
+  min-width: 90px;
+}
+
+.cart-price-unit {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: block;
+}
+
+.cart-price-total {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--espresso-dark);
+}
+
+/* Summary Panel on Right */
+.dedicated-cart-summary-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 90px;
+}
+
+.summary-card-inner h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--espresso-dark);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.cart-calc-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.925rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.cart-calc-line.total {
+  color: var(--espresso-dark);
+}
+
+@media (max-width: 850px) {
+  .dedicated-cart-grid {
+    grid-template-columns: 1fr;
+  }
+  .dedicated-cart-summary-panel {
+    position: static;
+  }
+}
+
+
+
+/* Payment QR presentation */
+.qr-payment-preview {
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid var(--border-color, #e7e1d9);
+  border-radius: 12px;
+  background: #F5F0E8;
+  margin-top: 0.75rem;
+}
+.qr-payment-preview img {
+  display: block;
+  width: min(100%, 320px);
+  max-height: 420px;
+  object-fit: contain;
+  margin: 0.75rem auto;
+  border-radius: 8px;
+}
+.qr-payment-preview p {
+  margin: 0.5rem 0;
+}
+
+/* Customer menu imagery for Coffee Lab Hot Drinks */
+.menu-card-image-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 0.85rem;
+  background: #D9C8B3;
+}
+.menu-card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* Slightly more compact menu cards */
+.items-grid {
+  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+  gap: 1rem;
+}
+.menu-card {
+  padding: 1rem;
+}
+.menu-card-image-wrap {
+  margin-bottom: 0.65rem;
+  border-radius: 10px;
+}
+
+
+/* Keep all menu product images centered and fully visible */
+.menu-card-image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.menu-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+}
+
+
+/* Plain white product image backgrounds, with no visible image-frame tint */
+.menu-card-image-wrap {
+  background: #F5F0E8 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.menu-card-image {
+  background: #F5F0E8 !important;
+}
+
+
+/* Burger/menu product photos should fill the image card consistently */
+.menu-card-image {
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+
+/* Reservation guidelines sit below the booking form at the page bottom */
+.reservation-guidelines-bottom {
+  width: min(100%, 900px);
+  margin: 1.75rem auto 0;
+}
+.reservation-guidelines-bottom .res-policy-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+.reservation-guidelines-bottom .res-policy-card ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.65rem 1.5rem;
+}
+
+
+/* Center the New Table Reservation form card */
+.reservation-layout {
+  display: flex;
+  justify-content: center;
+}
+.reservation-form-card {
+  width: min(100%, 760px);
+  margin-inline: auto;
+}
+
+.menu-card-image { display:block !important; visibility:visible !important; opacity:1 !important; }
+.menu-card-image.image-fallback { object-fit:contain; padding:1rem; background:#D9C8B3; }
+
+/* Cozy Autumn palette override */
+:root {
+  --coffee-lab-caramel: #A7AE98;
+  --coffee-lab-warm-beige: #D9C8B3;
+  --coffee-lab-cream: #F5F0E8;
+  --coffee-lab-rust: #49372C;
+  --coffee-lab-espresso: #49372C;
+}
+body { background-color: #F5F0E8; color: #49372C; }
+header, .site-header, .navbar, nav { background-color: #49372C; }
+button, .btn-primary, .active, .active-category { background-color: #A7AE98; color: #F5F0E8; }
+a { color: #49372C; }
+input, select, textarea, .card, .menu-card, .reservation-form-card, .order-tray {
+  border-color: #D9C8B3;
+}
+
+/* Updated Coffee Lab palette: Warm Ivory, Espresso, Sage, Oat */
+:root {
+  --bg-main: #F5F0E8;
+  --bg-surface: #F5F0E8;
+  --bg-subtle: #D9C8B3;
+  --bg-dark: #49372C;
+  --bg-card: #F5F0E8;
+  --text-primary: #49372C;
+  --text-secondary: #49372C;
+  --text-muted: #75665B;
+  --text-inverse: #F5F0E8;
+  --coffee-accent: #87411C;
+  --coffee-accent-hover: #87917A;
+  --coffee-accent-subtle: #D69A55;
+  --espresso-dark: #49372C;
+  --espresso-border: #D9C8B3;
+  --card-border: #D9C8B3;
+  --palette-ivory: #F5F0E8;
+  --palette-espresso: #49372C;
+  --palette-sage: #A7AE98;
+  --palette-oat: #D9C8B3;
+}
+body { background: #F5F0E8; color: #49372C; }
+header, .site-header, .navbar, nav { background-color: #49372C; }
+button, .btn-primary, .active, .active-category { background-color: #A7AE98; color: #49372C; }
+.card, .menu-card, .reservation-form-card, .order-tray, input, select, textarea {
+  background-color: #F5F0E8;
+  border-color: #D9C8B3;
+}
+
+
+/* Coffee Lab palette update: Champagne / Honey Garlic / Whiskey Sour / Burnt Coffee / Balsamico */
+:root {
+  --bg-main: #EACEAA;
+  --bg-surface: #EACEAA;
+  --bg-subtle: #D39858;
+  --bg-dark: #150C0C;
+  --bg-card: #EACEAA;
+  --text-primary: #150C0C;
+  --text-secondary: #85431E;
+  --text-muted: #85431E;
+  --text-inverse: #EACEAA;
+  --coffee-accent: #D39858;
+  --coffee-accent-hover: #85431E;
+  --coffee-accent-subtle: #EACEAA;
+  --espresso-dark: #150C0C;
+  --espresso-border: #85431E;
+  --card-border: #D39858;
+  --palette-champagne: #EACEAA;
+  --palette-honey-garlic: #85431E;
+  --palette-whiskey-sour: #D39858;
+  --palette-burnt-coffee: #34150F;
+  --palette-balsamico: #150C0C;
+}
+body { background: #EACEAA; color: #150C0C; }
+header, .site-header, .navbar, nav { background-color: #150C0C; color: #EACEAA; }
+header a, .site-header a, .navbar a, nav a { color: #EACEAA; }
+button, .btn-primary, .active, .active-category {
+  background-color: #85431E;
+  color: #EACEAA;
+  border-color: #85431E;
+}
+button:hover, .btn-primary:hover { background-color: #D39858; color: #150C0C; }
+a { color: #85431E; }
+.card, .menu-card, .reservation-form-card, .order-tray, input, select, textarea {
+  background-color: #EACEAA;
+  color: #150C0C;
+  border-color: #D39858;
+}
+h1, h2, h3, h4, .section-title { color: #34150F; }
+
+/* Coffee Lab ambience background image */
+body {
+  background-image: url('coffee-lab-ambience.jpg') !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+/* Softer treatment for the Home feature showcase */
+.feature-strip {
+  background: rgba(245, 240, 232, 0.94) !important;
+  padding: clamp(1rem, 2.4vw, 2rem) !important;
+  border: 1px solid rgba(217, 200, 179, 0.72);
+  border-radius: 24px;
+  gap: clamp(0.8rem, 1.5vw, 1.5rem);
+  margin: 1.25rem 0 3rem !important;
+}
+.feature-strip .strip-item {
+  background: #F5F0E8 !important;
+  border-color: #D9C8B3 !important;
+  box-shadow: 0 5px 16px rgba(73, 55, 44, 0.08) !important;
+}
+.feature-strip .strip-num {
+  background: #D9C8B3 !important;
+  color: #49372C !important;
+}
+.feature-strip .strip-item p {
+  color: #705B4C !important;
+}
+
+/* Remove the dark brown feature-section band; let the cafe background show through */
+.feature-strip,
+.feature-showcase,
+.features-section {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+/* Neaten the dedicated About page heading */
+#aboutView .about-page-header {
+  max-width: 1180px;
+  margin: 2rem auto 1.5rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: rgba(245, 240, 232, 0.96);
+  border: 1px solid #D9C8B3;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px rgba(21, 12, 12, 0.10);
+  text-align: left;
+}
+#aboutView .about-page-header .section-tag {
+  color: #85431E;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.65rem;
+}
+#aboutView .about-page-header h1 {
+  color: #34150F;
+  margin: 0 0 0.65rem;
+  line-height: 1.12;
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
+}
+#aboutView .about-page-header p {
+  color: #6F5546;
+  margin: 0;
+  max-width: 760px;
+  line-height: 1.65;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+}
+@media (max-width: 700px) {
+  #aboutView .about-page-header {
+    margin: 1rem 0.75rem 1.25rem;
+    padding: 1.4rem;
+    border-radius: 18px;
+  }
+}
+
+/* Remove the honey-colored card treatment throughout all views */
+.card, .menu-card, .reservation-form-card, .order-tray,
+.res-policy-card, .about-story, .about-page-header,
+.feature-strip .strip-item, .feature-card, .service-card,
+.dashboard-card, .stat-card, .modal-card, .panel-card {
+  background-color: #F5F0E8 !important;
+  color: #49372C !important;
+  border-color: #D9C8B3 !important;
+}
+.card h1, .card h2, .card h3, .menu-card h1, .menu-card h2,
+.menu-card h3, .reservation-form-card h1, .reservation-form-card h2,
+.res-policy-card h1, .res-policy-card h2, .res-policy-card h3 {
+  color: #49372C !important;
+}
+
+/* About page: remove colored panel backgrounds so the cafe photo is visible */
+#aboutView,
+#aboutView .about-page-header,
+#aboutView .about-section,
+#aboutView .about-story,
+#aboutView .about-hours-card,
+#aboutView .about-grid,
+#aboutView .about-stats,
+#aboutView .stat-box {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+#aboutView .about-page-header,
+#aboutView .about-section {
+  border-color: transparent !important;
+}
+#aboutView .about-hours-card,
+#aboutView .stat-box {
+  border-color: rgba(217, 200, 179, 0.45) !important;
+}
+
+/* Readability panels for the About page over the cafe photo */
+#aboutView .about-page-header,
+#aboutView .about-story,
+#aboutView .about-hours-card {
+  background: rgba(245, 240, 232, 0.94) !important;
+  color: #49372C !important;
+  border: 1px solid rgba(217, 200, 179, 0.9) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 8px 24px rgba(21, 12, 12, 0.12) !important;
+  backdrop-filter: blur(5px);
+}
+#aboutView .about-page-header {
+  padding: clamp(1.5rem, 4vw, 3rem) !important;
+  margin: 1.5rem auto 2rem !important;
+}
+#aboutView .about-story {
+  padding: clamp(1.25rem, 3vw, 2rem) !important;
+}
+#aboutView .about-hours-card {
+  padding: clamp(1.25rem, 2.5vw, 2rem) !important;
+}
+#aboutView .about-page-header h1,
+#aboutView .about-story h2,
+#aboutView .about-hours-card h3,
+#aboutView .about-story strong,
+#aboutView .about-hours-card strong {
+  color: #49372C !important;
+}
+#aboutView .about-page-header p,
+#aboutView .about-story p,
+#aboutView .about-hours-card p {
+  color: #705B4C !important;
+}
+#aboutView .about-stats .stat-box {
+  background: rgba(217, 200, 179, 0.62) !important;
+  border-color: #D9C8B3 !important;
+  border-radius: 14px;
+}
+#aboutView .about-stats .stat-num,
+#aboutView .about-stats .stat-desc {
+  color: #49372C !important;
+}
+@media (max-width: 700px) {
+  #aboutView .about-page-header,
+  #aboutView .about-story,
+  #aboutView .about-hours-card {
+    border-radius: 16px !important;
+  }
+}
+
+
+/* Match the About story and visit cards in height */
+#aboutView .about-grid {
+  align-items: stretch !important;
+}
+#aboutView .about-story,
+#aboutView .about-hours-card {
+  box-sizing: border-box;
+  height: 100%;
+  min-width: 0;
+}
+#aboutView .about-story {
+  display: flex;
+  flex-direction: column;
+}
+#aboutView .about-story .about-stats {
+  margin-top: auto;
+}
+@media (max-width: 900px) {
+  #aboutView .about-grid {
+    align-items: stretch !important;
+  }
+  #aboutView .about-story,
+  #aboutView .about-hours-card {
+    height: auto;
+  }
+}
+
+/* Hero corner bleed fix: make the dark hero edge clean and opaque */
+.home-hero {
+  border-radius: 0 !important;
+  overflow: hidden;
+  background: #49372C !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+
+/* Reservation section corner bleed fix: solid surface with clean edges */
+.reservation-section {
+  background: #F5F0E8 !important;
+  background-image: none !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+}
+.reservation-section::before,
+.reservation-section::after {
+  background: #F5F0E8 !important;
+}
+
+/* About page aligned with the Home page's Coffee Lab visual design */
+#aboutView {
+  color: #F5F0E8;
+}
+#aboutView .about-page-header {
+  max-width: none !important;
+  margin: 0 0 2rem !important;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 5vw, 3rem) !important;
+  background: #49372C !important;
+  background-image: none !important;
+  color: #F5F0E8 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-align: left !important;
+  backdrop-filter: none !important;
+}
+#aboutView .about-page-header .section-tag {
+  color: #D9C8B3 !important;
+}
+#aboutView .about-page-header h1 {
+  color: #F5F0E8 !important;
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 4.25rem) !important;
+  line-height: 1.08 !important;
+}
+#aboutView .about-page-header p {
+  color: #D9C8B3 !important;
+  max-width: 800px;
+}
+#aboutView .about-section {
+  margin: 0 0 2.5rem !important;
+  padding: clamp(1rem, 2.5vw, 2rem) !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+#aboutView .about-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) !important;
+  gap: clamp(1rem, 2.5vw, 2rem) !important;
+  align-items: stretch !important;
+}
+#aboutView .about-story,
+#aboutView .about-hours-card {
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  padding: clamp(1.25rem, 3vw, 2.25rem) !important;
+  background: rgba(245, 240, 232, 0.97) !important;
+  background-image: none !important;
+  color: #49372C !important;
+  border: 1px solid #D9C8B3 !important;
+  border-radius: 22px !important;
+  box-shadow: 0 6px 20px rgba(21, 12, 12, 0.10) !important;
+  backdrop-filter: none !important;
+}
+#aboutView .about-story h2,
+#aboutView .about-hours-card h3,
+#aboutView .about-story strong,
+#aboutView .about-hours-card strong {
+  color: #49372C !important;
+}
+#aboutView .about-story p,
+#aboutView .about-hours-card p {
+  color: #705B4C !important;
+}
+#aboutView .about-stats {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+#aboutView .stat-box {
+  background: #D9C8B3 !important;
+  color: #49372C !important;
+  border-color: #D9C8B3 !important;
+  box-shadow: none !important;
+}
+@media (max-width: 900px) {
+  #aboutView .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+  #aboutView .about-story,
+  #aboutView .about-hours-card {
+    height: auto !important;
+  }
+}
+
+/* Solid Home-page espresso backdrop behind the About cards */
+#aboutView .about-section,
+#aboutView .about-grid {
+  background: #49372C !important;
+  background-image: none !important;
+}
+#aboutView .about-section {
+  padding: clamp(1.25rem, 3vw, 2.5rem) !important;
+  border-radius: 0 !important;
+}
+
+/* Match About section backdrop to the Home page feature area */
+#aboutView .about-section,
+#aboutView .about-grid {
+  background: #85431E !important;
+  background-image: none !important;
+}
+#aboutView .about-section {
+  padding: clamp(1.25rem, 3vw, 2.5rem) !important;
+  border-radius: 0 !important;
+}
+
+/* Keep the About header espresso and content backdrop rust; remove only the gap */
+#aboutView .about-page-header {
+  margin-bottom: 0 !important;
+}
+#aboutView .about-section {
+  margin-top: 0 !important;
+}
+
+
+/* About page: carry over the Home page's three-tone Coffee Lab backdrop */
+#aboutView {
+  background: linear-gradient(to bottom, #49372C 0 25%, #85431E 25% 72%, #F5F0E8 72% 100%) !important;
+  color: #F5F0E8;
+}
+#aboutView .about-page-header {
+  background: #49372C !important;
+  color: #F5F0E8 !important;
+}
+#aboutView .about-section,
+#aboutView .about-grid {
+  background: #85431E !important;
+}
+#aboutView .about-story,
+#aboutView .about-hours-card {
+  background: #F5F0E8 !important;
+}
+
+/* About page: three connected Home-style color bands (espresso, rust, warm ivory) */
+#aboutView {
+  background: #F5F0E8 !important;
+  color: #49372C !important;
+}
+#aboutView .about-page-header {
+  background: #49372C !important;
+  color: #F5F0E8 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+#aboutView .about-section {
+  background: #85431E !important;
+  background-image: none !important;
+  margin: 0 !important;
+  padding: clamp(1.5rem, 4vw, 3rem) !important;
+  border-radius: 0 !important;
+}
+#aboutView .about-grid {
+  background: transparent !important;
+}
+#aboutView .about-story,
+#aboutView .about-hours-card {
+  background: #F5F0E8 !important;
+  background-image: none !important;
+  color: #49372C !important;
+  border: 1px solid #D9C8B3 !important;
+}
+#aboutView .about-story h2,
+#aboutView .about-hours-card h3,
+#aboutView .about-story strong,
+#aboutView .about-hours-card strong {
+  color: #49372C !important;
+}
+#aboutView .about-story p,
+#aboutView .about-hours-card p {
+  color: #705B4C !important;
+}
+
+/* About layout refinement: story first, Visit Coffee Lab below */
+#aboutView .about-section { background: #85431E !important; padding: clamp(1.5rem, 4vw, 3rem) !important; }
+#aboutView .about-grid { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; gap: 1.5rem !important; align-items: stretch !important; background: transparent !important; }
+#aboutView .about-story, #aboutView .about-hours-card { width: 100% !important; max-width: none !important; min-width: 0 !important; background: #F5F0E8 !important; color: #49372C !important; border: 1px solid #D9C8B3 !important; border-radius: 22px !important; box-sizing: border-box !important; }
+#aboutView .about-hours-card { margin: 0 !important; }
+@media (min-width: 900px) { #aboutView .about-grid { grid-template-columns: minmax(0, 1fr) !important; } }
+
+/* User-requested refinement: warm beige backdrop around the lower story/visit cards */
+#aboutView .about-section {
+  background: #F5F0E8 !important;
+  background-image: none !important;
+}
+#aboutView .about-grid {
+  background: transparent !important;
+}
+#aboutView .about-story,
+#aboutView .about-hours-card {
+  background: #F5F0E8 !important;
+  border-color: #D9C8B3 !important;
+}
+
+
+/* Requested About page color treatment: espresso header, rust story card, warm beige Visit card */
+#aboutView .about-page-header {
+  background: #49372C !important;
+  color: #F5F0E8 !important;
+}
+#aboutView .about-section {
+  background: #F5F0E8 !important;
+  background-image: none !important;
+}
+#aboutView .about-story {
+  background: #85431E !important;
+  background-image: none !important;
+  color: #F5F0E8 !important;
+  border-color: #A96A3D !important;
+}
+#aboutView .about-story h2,
+#aboutView .about-story strong { color: #F5F0E8 !important; }
+#aboutView .about-story p,
+#aboutView .about-story .eyebrow { color: #EAD5C0 !important; }
+#aboutView .about-story .stat-box {
+  background: rgba(245, 240, 232, 0.14) !important;
+  border-color: rgba(245, 240, 232, 0.22) !important;
+  color: #F5F0E8 !important;
+}
+#aboutView .about-hours-card {
+  background: #F5F0E8 !important;
+  background-image: none !important;
+  color: #49372C !important;
+  border-color: #D9C8B3 !important;
+}
+#aboutView .about-hours-card h3,
+#aboutView .about-hours-card strong { color: #49372C !important; }
+#aboutView .about-hours-card p { color: #705B4C !important; }
+
+/* Correct the BACKDROP sections behind the About cards; preserve card surfaces */
+#aboutView .about-section { background: transparent !important; padding: 0 !important; }
+#aboutView .about-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+#aboutView .about-story-backdrop {
+  background: #85431E !important;
+  padding: clamp(2rem, 5vw, 4rem) !important;
+}
+#aboutView .about-visit-backdrop {
+  background: #F5F0E8 !important;
+  padding: clamp(1.5rem, 4vw, 3rem) !important;
+}
+#aboutView .about-story,
+#aboutView .about-hours-card {
+  background: #F5F0E8 !important;
+  color: #49372C !important;
+  border: 1px solid #D9C8B3 !important;
+  border-radius: 22px !important;
+  width: 100% !important;
+  max-width: 1500px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+#aboutView .about-story h2,
+#aboutView .about-story strong,
+#aboutView .about-hours-card h3,
+#aboutView .about-hours-card strong { color: #49372C !important; }
+#aboutView .about-story p,
+#aboutView .about-hours-card p { color: #705B4C !important; }
+
+
+/* Reservation layout: reduce excessive side whitespace */
+.reservation-section {
+  padding-inline: clamp(1rem, 2.2vw, 2rem) !important;
+}
+.reservation-layout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.reservation-form-card {
+  width: min(100%, 1280px) !important;
+  max-width: 1280px !important;
+  margin-inline: auto;
+}
+@media (max-width: 700px) {
+  .reservation-section { padding-inline: 0.75rem !important; }
+  .reservation-form-card { padding: 1.25rem !important; }
+}
+
+/* Match Reservation Guidelines card width to the New Table Reservation card */
+.reservation-guidelines-bottom {
+  width: min(100%, 1280px) !important;
+  max-width: 1280px !important;
+  margin-inline: auto !important;
+  box-sizing: border-box;
+}
+.reservation-guidelines-bottom .res-policy-card {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box;
+}
+
+
+/* Sign-in / member portal palette alignment with the Home page */
+.auth-page-container {
+  background: #F5F0E8;
+  border-color: #D9C8B3;
+}
+.auth-hero-banner {
+  background: linear-gradient(145deg, #49372C 0%, #362013 100%);
+  color: #F5F0E8;
+}
+.auth-hero-banner h2,
+.auth-hero-banner .auth-pill-container,
+.auth-hero-banner strong {
+  color: #F5F0E8;
+}
+.auth-form-card {
+  background: #F5F0E8;
+  color: #49372C;
+}
+.auth-tab-btn {
+  color: #87411C;
+}
+.auth-tab-btn.active {
+  color: #F5F0E8;
+  background: #87411C;
+  border-bottom-color: #D69A55;
+}
+.auth-tab-header h3 {
+  color: #2B1710;
+}
+.auth-tab-header p,
+.auth-form-card label {
+  color: #6F5747;
+}
+.auth-form-card input,
+.auth-form-card select,
+.auth-form-card textarea {
+  background-color: #F5F0E8;
+  color: #2B1710;
+  border-color: #87411C;
+}
+.auth-form-card .btn-primary {
+  background: #87411C;
+  color: #F5F0E8;
+}
+.auth-form-card .btn-primary:hover:not(:disabled) {
+  background: #49372C;
+}
+.auth-form-card .btn-secondary {
+  background: #D9C8B3;
+  color: #49372C;
+  border-color: #C8B49D;
+}
+.auth-form-card .btn-outline {
+  color: #87411C;
+  border-color: #87411C;
+}
+.auth-form-card .btn-outline:hover {
+  background: #87411C;
+  color: #F5F0E8;
+}
+.auth-form-card .login-hint,
+.auth-form-card .demo-login-chip-box {
+  background: #E9DCCB !important;
+  border-color: #C8B49D !important;
+}
+
+/* Slightly compact the customer sign-in card while preserving the portal layout */
+.auth-form-card {
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+  padding: 2rem 2.25rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .auth-form-card {
+    max-width: 100%;
+    padding: 1.75rem 1.5rem;
+  }
+}
+
+/* Add a clearer frame of the cafe background around the member portal */
+.auth-page-container {
+  width: min(1220px, calc(100% - 112px));
+  max-width: 1220px;
+  margin: 3rem auto;
+}
+@media (max-width: 700px) {
+  .auth-page-container {
+    width: calc(100% - 28px);
+    margin: 1rem auto;
+  }
+}
+
+/* Refined member sign-in panel: remove the rust slab behind form content */
+.auth-form-card {
+  max-width: 560px;
+  padding: 1.75rem 2rem;
+  background: #F5F0E8;
+  border-radius: 22px;
+  border: 1px solid #D9C8B3;
+  box-shadow: 0 12px 30px rgba(54, 32, 19, 0.08);
+}
+.auth-tab-panel,
+.auth-tab-panel.active {
+  background: transparent !important;
+  color: #49372C;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+.auth-tab-header { margin-bottom: 1.25rem; }
+.auth-tab-header h3 {
+  font-size: clamp(1.5rem, 2vw, 1.9rem);
+  line-height: 1.2;
+  margin: 0 0 .45rem;
+  color: #49372C !important;
+}
+.auth-tab-header p {
+  color: #786454 !important;
+  margin: 0;
+  line-height: 1.5;
+}
+.auth-form-card .form-group { margin-bottom: 1rem; }
+.auth-form-card label {
+  display: block;
+  margin-bottom: .45rem;
+  font-size: .92rem;
+  font-weight: 650;
+  color: #87411C !important;
+}
+.auth-form-card input {
+  width: 100%;
+  min-height: 48px;
+  padding: .75rem 1rem;
+  border: 1px solid #C8B49D;
+  border-radius: 12px;
+  background: #FFFCF7 !important;
+  color: #2B1710 !important;
+  box-sizing: border-box;
+}
+.auth-form-card .btn-primary.btn-lg { min-height: 50px; border-radius: 12px; margin-top: .25rem; }
+.auth-form-card .divider { margin: 1.1rem 0; color: #87411C; }
+.auth-form-card .btn-secondary { min-height: 48px; border-radius: 12px; }
+.auth-form-card .demo-login-chip-box {
+  padding: 1rem !important;
+  border-radius: 14px !important;
+  text-align: left !important;
+  background: #E9DCCB !important;
+  border: 1px dashed #C8B49D !important;
+}
+.auth-form-card .demo-login-chip-box small { color: #6F5747 !important; }
+.auth-form-card .demo-login-chip-box .btn { margin-top: .5rem; border-radius: 10px; }
+@media (max-width: 600px) {
+  .auth-form-card { padding: 1.25rem; max-width: 100%; }
+  .auth-tabs { margin-bottom: 1.1rem; }
+  .auth-tab-btn { padding: .7rem .45rem; font-size: .85rem; }
+}
+
+
+/* Compact sign-in card: slightly narrower and less tall */
+.auth-form-card {
+  max-width: 490px;
+  padding: 1.35rem 1.55rem;
+}
+.auth-tab-header { margin-bottom: 0.9rem; }
+.auth-form-card .form-group { margin-bottom: 0.75rem; }
+.auth-form-card input { min-height: 44px; padding: 0.65rem 0.9rem; }
+.auth-form-card .btn-primary.btn-lg { min-height: 46px; }
+.auth-form-card .divider { margin: 0.8rem 0; }
+.auth-form-card .btn-secondary { min-height: 44px; }
+.auth-form-card .demo-login-chip-box { padding: 0.8rem !important; }
+@media (max-width: 600px) {
+  .auth-form-card { max-width: 100%; padding: 1.1rem; }
+}
+
+/* Give the member sign-in card more breathing room from the surrounding solid panel */
+.auth-form-card {
+  width: min(100% - 3.5rem, 490px);
+  max-width: 490px;
+  margin: 1.25rem auto;
+  align-self: center;
+  box-sizing: border-box;
+}
+@media (max-width: 900px) {
+  .auth-form-card {
+    width: min(100% - 2rem, 560px);
+    margin: 1rem auto;
+  }
+}
+@media (max-width: 600px) {
+  .auth-form-card {
+    width: calc(100% - 1rem);
+    margin: .5rem auto;
+  }
+}
+
+/* Resize and inset the complete Customer & Member Portal from the cafe backdrop */
+.auth-page-container {
+  width: min(1120px, calc(100% - 160px));
+  max-width: 1120px;
+  margin: 3.5rem auto;
+}
+@media (max-width: 900px) {
+  .auth-page-container {
+    width: calc(100% - 48px);
+    margin: 2rem auto;
+  }
+}
+@media (max-width: 700px) {
+  .auth-page-container {
+    width: calc(100% - 28px);
+    margin: 1rem auto;
+  }
+}
+
+/* Match the portal layout to the visual mockup: rust backdrop frames the full portal */
+#authView {
+  background: #87411C;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+#authView .auth-page-container {
+  width: min(1120px, calc(100% - 3rem));
+  max-width: 1120px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  #authView { padding: 1.5rem 0.75rem; }
+  #authView .auth-page-container { width: calc(100% - 1rem); }
+}
+@media (max-width: 700px) {
+  #authView { padding: 1rem 0.5rem; }
+  #authView .auth-page-container { width: 100%; }
+}
+
+
+/* Subtle transparency for the top Home hero surface, allowing the cafe backdrop to show through */
+.home-hero {
+  background: linear-gradient(135deg, rgba(73, 55, 44, 0.90) 0%, rgba(54, 32, 19, 0.88) 100%) !important;
+  background-image: linear-gradient(135deg, rgba(73, 55, 44, 0.90) 0%, rgba(54, 32, 19, 0.88) 100%) !important;
+  color: #F5F0E8 !important;
+}
+.home-hero h1, .home-hero h2, .home-hero p, .home-hero .hero-highlights-card {
+  color: #F5F0E8;
+}
+
+/* Clearly translucent Home hero overlay: lets the cafe ambience photo show through */
+#homeAboutView .home-hero {
+  background: linear-gradient(135deg,
+    rgba(73, 55, 44, 0.58) 0%,
+    rgba(54, 32, 19, 0.62) 100%) !important;
+  background-color: transparent !important;
+  background-image: linear-gradient(135deg,
+    rgba(73, 55, 44, 0.58) 0%,
+    rgba(54, 32, 19, 0.62) 100%) !important;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+
+/* Homepage refresh — warm cream and coffee palette inspired by the reference */
+#homeAboutView .home-hero-refresh {
+  min-height: 470px; position: relative; display: flex; align-items: center;
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 6vw, 5rem);
+  color: #32190e !important;
+  background: linear-gradient(90deg, rgba(248,239,224,.98) 0%, rgba(248,239,224,.92) 42%, rgba(248,239,224,.20) 72%), url('coffee-lab-ambience.jpg') right center / cover no-repeat !important;
+  border-radius: 0 !important; overflow: hidden;
+}
+#homeAboutView .home-hero-refresh .hero-content { max-width: 650px; position: relative; z-index: 1; }
+#homeAboutView .home-hero-refresh .hero-badge { color: #67351d; background: rgba(255,250,242,.65); border-color: rgba(103,53,29,.2); text-transform: uppercase; letter-spacing: .16em; }
+#homeAboutView .home-hero-refresh .hero-title { color: #32190e !important; font-family: var(--font-serif); font-size: clamp(2.7rem, 5.2vw, 4.5rem); line-height: 1.05; }
+#homeAboutView .home-hero-refresh .hero-subtitle { color: #4b2a19 !important; max-width: 520px; font-size: 1.08rem; }
+#homeAboutView .home-hero-refresh .hero-actions { display:flex; flex-wrap:wrap; gap:.8rem; }
+#homeAboutView .home-hero-refresh .btn-secondary { background: rgba(255,248,239,.7); color:#4a2818; border:1px solid #8b4b27; }
+.home-hero-values { display:flex; gap:0; margin-top:2rem; max-width:460px; }
+.home-hero-values div { display:flex; flex:1; flex-direction:column; align-items:center; gap:.45rem; color:#432313; border-right:1px solid rgba(92,52,29,.3); font-weight:600; }
+.home-hero-values div:last-child { border-right:0; }
+.home-hero-values .value-icon { font-size:1.8rem; line-height:1; }
+.home-favorites { padding:2.4rem clamp(1rem, 5vw, 4.5rem) 2.8rem; background:#f8f1e7; color:#32190e; }
+.home-section-heading { text-align:center; margin:0 auto 1.5rem; display:grid; grid-template-columns:auto auto auto; align-items:center; justify-content:center; column-gap:1rem; }
+.home-section-heading h2 { margin:0; font-family:var(--font-serif); color:#32190e; font-size:clamp(1.7rem,3vw,2.5rem); }
+.home-section-heading .heading-rule { width:50px; height:1px; background:#6c3a20; }
+.home-section-heading p { grid-column:1/-1; margin:.55rem 0 0; color:#63432f; }
+.home-favorite-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:1rem; max-width:1250px; margin:auto; }
+.home-favorite-card { overflow:hidden; background:#fff8ef; border:1px solid #e5d6c4; border-radius:13px; box-shadow:0 3px 10px rgba(65,35,18,.07); }
+.home-favorite-card img { display:block; width:100%; height:165px; object-fit:cover; background:#ead8c3; }
+.favorite-info { padding:.75rem .8rem .8rem; }
+.favorite-info h3 { margin:0 0 .25rem; color:#32190e; font-size:.95rem; }
+.favorite-info p { margin:0 0 .65rem; color:#5b321b; font-weight:700; }
+.favorite-info button { width:100%; border:0; border-radius:8px; background:#75401f; color:#fff7ed; padding:.6rem .5rem; font-weight:600; cursor:pointer; }
+.favorite-info button:hover { background:#8a4b26; }
+.home-about-preview { display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(1.5rem,4vw,3.5rem); align-items:center; padding:2.8rem clamp(1rem,5vw,4.5rem); background:#f4e8d9; color:#32190e; }
+.home-about-preview > img { width:100%; height:320px; object-fit:cover; border-radius:13px; }
+.home-about-copy h2 { font-family:var(--font-serif); color:#32190e; font-size:clamp(1.8rem,3vw,2.6rem); margin:.4rem 0 .8rem; }
+.home-about-copy p { color:#543521; line-height:1.65; }
+.home-about-copy ul { list-style:none; padding:0; margin:1rem 0 1.3rem; }
+.home-about-copy li { margin:.45rem 0; color:#4a2c1a; }
+.home-about-copy li::before { content:'✓'; color:#8a4b26; font-weight:800; margin-right:.65rem; }
+.home-feature-strip { background:#f8f1e7 !important; color:#432313; }
+.home-feature-strip .strip-item { border-color:#e3d2bd; }
+@media(max-width:900px) { .home-favorite-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } .home-about-preview { grid-template-columns:1fr; } }
+@media(max-width:600px) { #homeAboutView .home-hero-refresh { min-height:auto; background:linear-gradient(90deg,rgba(248,239,224,.96),rgba(248,239,224,.82)),url('coffee-lab-ambience.jpg') center/cover no-repeat !important; padding:2.4rem 1.2rem; } #homeAboutView .home-hero-refresh .hero-title { font-size:2.5rem; } .home-favorite-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:.7rem; } .home-favorite-card img { height:135px; } .home-section-heading .heading-rule { width:25px; } .home-about-preview { padding:1.5rem 1rem; } .home-about-preview > img { height:230px; } }
+
+/* Header Search navigation action */
+.role-nav .nav-link[aria-label="Search menu"] { display: inline-flex; align-items: center; gap: .35rem; }
+
+/* Logged-in customer cart icon with an empty-cart plus or live item count */
+.role-nav .cart-icon-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 42px;
+  padding: 0;
+  margin-left: .15rem;
+  color: #f5f0e8;
+  border: 1px solid rgba(229, 215, 204, .42);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .045);
+}
+.role-nav .cart-icon-button:hover,
+.role-nav .cart-icon-button.active {
+  background: rgba(255, 255, 255, .14);
+  border-color: rgba(245, 240, 232, .8);
+  color: #fff;
+}
+.cart-icon {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cart-icon-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--coffee-accent, #b86a2d);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 0 0 2px var(--coffee-dark, #3b2118);
+}
+.cart-icon-badge.is-empty { min-width: 19px; width: 19px; height: 19px; padding: 0; }
+.cart-icon-badge svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+/* Customer account header aligned to the Coffee Lab reference layout */
+.header-container:has(.customer-account-header) { max-width: 100%; padding: .75rem clamp(1.25rem, 2.7vw, 3.4rem); gap: clamp(.8rem, 1.8vw, 2rem); }
+.header-container:has(.customer-account-header) .brand { flex: 0 0 auto; }
+.header-container:has(.customer-account-header) .role-nav { flex: 1 1 auto; justify-content: center; gap: clamp(.2rem, .8vw, .9rem); min-width: 0; }
+.header-container:has(.customer-account-header) .role-nav .nav-link { white-space: nowrap; padding: .55rem .65rem; font-size: clamp(.78rem, .95vw, .95rem); }
+.header-container:has(.customer-account-header) .role-nav .nav-link.active { background: transparent; box-shadow: inset 0 -2px 0 #f5eee5; border-radius: 0; color: #fff; }
+.header-menu-search { display: flex; align-items: center; gap: .65rem; width: clamp(190px, 19vw, 340px); flex: 0 1 340px; border: 1px solid rgba(245,238,229,.48); background: rgba(255,255,255,.07); border-radius: 999px; padding: .5rem .8rem; color: #f8f1e8; }
+.header-menu-search svg { width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.header-menu-search input { min-width: 0; width: 100%; border: 0; outline: 0; color: inherit; background: transparent; font: inherit; font-size: .86rem; }
+.header-menu-search input::placeholder { color: #f0e5da; opacity: 1; }
+.header-container:has(.customer-account-header) .auth-pill-container { flex: 0 0 auto; gap: .75rem; }
+.customer-account-header { display: inline-flex; align-items: center; gap: .65rem; border: 0; background: transparent; color: #f5f0e8; font: inherit; font-size: .95rem; white-space: nowrap; cursor: pointer; padding: .35rem; }
+.customer-account-icon { width: 29px; height: 29px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.account-chevron { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; }
+.header-container:has(.customer-account-header) .role-nav .cart-icon-button,
+.header-container:has(.customer-account-header) .auth-pill-container .cart-icon-button { width: 58px; height: 58px; border-radius: 14px; margin-left: 0; }
+.header-container:has(.customer-account-header) .cart-icon { width: 32px; height: 32px; }
+.header-container:has(.customer-account-header) .customer-header-logout { display: none; }
+@media (max-width: 1100px) {
+  .header-container:has(.customer-account-header) { flex-wrap: wrap; }
+  .header-container:has(.customer-account-header) .role-nav { order: 3; flex-basis: 100%; justify-content: center; flex-wrap: wrap; }
+}
+@media (max-width: 700px) {
+  .header-menu-search { width: 100%; flex-basis: 100%; }
+  .header-container:has(.customer-account-header) .auth-pill-container { margin-left: auto; }
+  .header-container:has(.customer-account-header) .role-nav { justify-content: flex-start; }
+}
+
+/* Refine logged-in cart control: compact button and snug badge placement */
+.header-container:has(.customer-account-header) .role-nav .cart-icon-button,
+.header-container:has(.customer-account-header) .auth-pill-container .cart-icon-button {
+  box-sizing: border-box !important;
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 10px !important;
+  flex: 0 0 44px !important;
+  overflow: visible !important;
+}
+.header-container:has(.customer-account-header) .cart-icon {
+  width: 25px !important;
+  height: 25px !important;
+}
+.header-container:has(.customer-account-header) .cart-icon-badge {
+  top: -3px !important;
+  right: -3px !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  padding: 0 4px !important;
+  font-size: 10px !important;
+  box-shadow: 0 0 0 2px var(--coffee-dark, #3b2118) !important;
+}
+.header-container:has(.customer-account-header) .cart-icon-badge.is-empty {
+  width: 18px !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  padding: 0 !important;
+}
+.header-container:has(.customer-account-header) .cart-icon-badge svg {
+  width: 9px !important;
+  height: 9px !important;
+}
+
+/* Final cart badge correction: keep the plus/count attached to the cart button */
+.header-container:has(.customer-account-header) .cart-icon-button {
+  position: relative !important;
+  isolation: isolate;
+}
+.header-container:has(.customer-account-header) .cart-icon-button > .cart-icon-badge {
+  position: absolute !important;
+  top: 1px !important;
+  right: 1px !important;
+  left: auto !important;
+  bottom: auto !important;
+  transform: translate(28%, -28%) !important;
+  z-index: 5 !important;
+  margin: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Customer account dropdown: profile/rewards and sign-out options */
+.header-container:has(.customer-account-header) .customer-account-menu-wrap { position: relative; display: inline-flex; align-items: center; }
+.customer-account-dropdown { position: absolute; z-index: 1000; top: calc(100% + 10px); right: 0; min-width: 190px; padding: 7px; background: #fff8ef; border: 1px solid rgba(117, 70, 39, .2); border-radius: 12px; box-shadow: 0 10px 28px rgba(20, 10, 5, .24); }
+.customer-account-dropdown[hidden] { display: none !important; }
+.customer-account-dropdown button { display: block; width: 100%; text-align: left; padding: 11px 13px; border: 0; border-radius: 8px; background: transparent; color: #392316; font: inherit; font-size: .92rem; cursor: pointer; }
+.customer-account-dropdown button:hover { background: #f0dfcc; }
+.customer-account-dropdown .account-signout-option { margin-top: 5px; border-top: 1px solid #e6d5c3; border-radius: 0 0 8px 8px; color: #9b461e; font-weight: 600; }
+
+
+/* Ordering/menu view: replace the solid rust backdrop with warm beige */
+#guestView {
+  background-color: #F5F0E8 !important;
+  background-image: none !important;
+}
+
+
+/* Coffee Lab palette update: warm beige solid backgrounds across all access views */
+#guestView,
+#customerProfileView,
+#cashierView,
+#adminView,
+#authView {
+  background-color: #F5F0E8 !important;
+  background-image: none !important;
+  color: #49372C !important;
+}
+.view-section.active {
+  background-color: #F5F0E8 !important;
+}
+
+
+/* Definitive backdrop fix: recolor nested content canvases, not just view wrappers */
+#guestView #guestMenuView,
+#guestView #guestCartView,
+#guestView #guestOrdersView,
+#guestView .section-banner,
+#guestView .category-tabs,
+#guestView .menu-grid-container,
+#customerProfileView .profile-page,
+#customerProfileView .profile-container,
+#adminView .admin-content,
+#adminView .admin-dashboard,
+#cashierView .cashier-content,
+#cashierView .pos-container,
+#authView .auth-page-container {
+  background-color: #F5F0E8 !important;
+  background-image: none !important;
+}
+
+/* Ensure the menu subview's full canvas stays warm beige while preserving cards/tray */
+#guestMenuView.sub-view,
+#guestMenuView.sub-view.active {
+  background: #F5F0E8 !important;
+}
+
+
+/* Add comfortable breathing room inside the warm beige customer ordering canvas */
+#guestView {
+  box-sizing: border-box !important;
+  padding: clamp(16px, 2.2vw, 32px) !important;
+}
+#guestView #guestSubNav {
+  margin: 0 0 18px !important;
+  border-radius: 12px !important;
+}
+#guestView #guestMenuView,
+#guestView #guestCartView,
+#guestView #guestOrdersView {
+  box-sizing: border-box !important;
+  padding: clamp(14px, 1.8vw, 26px) !important;
+  border-radius: 12px !important;
+}
+#guestView .section-banner {
+  margin-bottom: 22px !important;
+}
+#guestView .category-tabs {
+  margin-bottom: 24px !important;
+}
+@media (max-width: 700px) {
+  #guestView {
+    padding: 14px !important;
+  }
+  #guestView #guestMenuView,
+  #guestView #guestCartView,
+  #guestView #guestOrdersView {
+    padding: 12px !important;
+  }
+}
+
+
+/* Bring the navbar search closer to the logged-in account greeting */
+.header-container:has(.customer-account-header) .role-nav {
+  justify-content: flex-end !important;
+  gap: clamp(0.2rem, 0.55vw, 0.65rem) !important;
+}
+.header-container:has(.customer-account-header) .header-menu-search {
+  margin-right: 0 !important;
+}
+@media (max-width: 1100px) {
+  .header-container:has(.customer-account-header) .role-nav {
+    justify-content: center !important;
+  }
+}
+
+
+/* Profile & Rewards: remove the awkward unused side-space by stacking full-width panels */
+#customerProfileView #memberProfileContent .profile-grid {
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 1.5rem !important;
+  align-items: stretch !important;
+}
+#customerProfileView #memberProfileContent .profile-details-card,
+#customerProfileView #memberProfileContent .loyalty-hub-card {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+#customerProfileView #memberProfileContent .profile-details-card {
+  margin-bottom: 0 !important;
+}
+#customerProfileView #memberProfileContent .loyalty-hub-card {
+  margin-top: 0 !important;
+}
+@media (min-width: 1100px) {
+  #customerProfileView #memberProfileContent .profile-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+
+/* Cashier POS: add breathing room between the register contents and the solid backdrop */
+#cashierView #cashierRegisterTab {
+  padding: 20px 24px 24px !important;
+  box-sizing: border-box;
+}
+#cashierView #cashierRegisterTab .pos-layout {
+  width: 100%;
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  #cashierView #cashierRegisterTab {
+    padding: 16px !important;
+  }
+}
+
+
+/* Cashier station header: add more breathing room from the solid background edges */
+#cashierView > .view-sub-header {
+  margin: 16px 36px 22px !important;
+  padding: 14px 20px 16px !important;
+  width: calc(100% - 72px) !important;
+  box-sizing: border-box !important;
+  border-radius: 14px;
+}
+@media (max-width: 900px) {
+  #cashierView > .view-sub-header {
+    margin: 12px 18px 18px !important;
+    padding: 12px !important;
+    width: calc(100% - 36px) !important;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+
+/* Cashier Kitchen Queue: give the toolbar and kanban columns comfortable inset spacing */
+#cashierQueueTab {
+  padding: 18px 24px 26px !important;
+  box-sizing: border-box;
+}
+#cashierQueueTab .queue-toolbar {
+  margin: 0 0 1rem !important;
+}
+#cashierQueueTab .kanban-board {
+  width: 100%;
+  box-sizing: border-box;
+  gap: 1.1rem;
+}
+@media (max-width: 900px) {
+  #cashierQueueTab {
+    padding: 14px 16px 20px !important;
+  }
+}
+
+
+/* Kitchen Queue: improve readability of order details against cream cards */
+#cashierQueueTab .col-header,
+#cashierQueueTab .col-header *,
+#cashierQueueTab .kitchen-card,
+#cashierQueueTab .kitchen-card * {
+  color: #493126 !important;
+}
+#cashierQueueTab .kitchen-card-header {
+  color: #493126 !important;
+}
+#cashierQueueTab .kitchen-card-items,
+#cashierQueueTab .kitchen-item-row {
+  color: #65432F !important;
+}
+#cashierQueueTab .kitchen-card .kitchen-card-actions button {
+  color: #F5F0E8 !important;
+}
+
+/* Reservations Book: add comfortable inset from the rust-colored page surface */
+#cashierReservationsTab {
+  padding: 1.5rem 1.5rem 2rem !important;
+}
+
+#cashierReservationsTab .history-header {
+  margin-bottom: 1rem;
+}
+
+#cashierReservationsTab .table-container {
+  margin-inline: 0;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  #cashierReservationsTab {
+    padding: 1rem !important;
+  }
+}
+
+
+/* Stronger Reservations Book page inset: content was still flush against the rust canvas */
+#cashierView #cashierReservationsTab {
+  padding: clamp(28px, 3.2vw, 52px) clamp(28px, 3.6vw, 56px) !important;
+  box-sizing: border-box !important;
+}
+#cashierView #cashierReservationsTab .history-panel {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+#cashierView #cashierReservationsTab .history-header {
+  margin: 0 0 22px !important;
+}
+#cashierView #cashierReservationsTab .table-container {
+  width: 100% !important;
+  margin: 0 !important;
+}
+@media (max-width: 768px) {
+  #cashierView #cashierReservationsTab {
+    padding: 20px 16px 24px !important;
+  }
+}
+
+/* POS category buttons: improve contrast when not selected */
+.pos-cat-btn:not(.active) {
+  color: #7A3E20;
+}
+
+
+/* Reservations Book table: improve readability of pale body text */
+#cashierReservationsTableBody td {
+  color: #65432F !important;
+}
+#cashierReservationsTableBody td strong,
+#cashierReservationsTableBody td small,
+#cashierReservationsTableBody td .text-muted {
+  color: #65432F !important;
+}
+#cashierReservationsTableBody td .order-status-badge {
+  color: #234DAA !important;
+}
+
+/* Shift Receipts: inset the content from the solid rust background for a more balanced layout */
+#cashierView #cashierHistoryTab {
+  padding: clamp(28px, 3.2vw, 52px) clamp(28px, 3.6vw, 56px) !important;
+  box-sizing: border-box !important;
+}
+#cashierView #cashierHistoryTab .history-panel {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+#cashierView #cashierHistoryTab .history-header {
+  margin: 0 0 22px !important;
+}
+#cashierView #cashierHistoryTab .table-container {
+  width: 100% !important;
+  margin: 0 !important;
+  border-radius: 12px !important;
+  overflow-x: auto;
+}
+@media (max-width: 768px) {
+  #cashierView #cashierHistoryTab {
+    padding: 20px 16px 24px !important;
+  }
+}
+
+
+/* Extra inset for cashier station header card: keep it well clear of viewport edges */
+#cashierView > .view-sub-header {
+  margin: 20px 6vw 24px !important;
+  width: calc(100% - 12vw) !important;
+  padding: 16px 24px 18px !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 900px) {
+  #cashierView > .view-sub-header {
+    margin: 14px 20px 20px !important;
+    width: calc(100% - 40px) !important;
+    padding: 12px 16px !important;
+  }
+}
+
+/* Cashier station header: increase the top outer gap specifically */
+#cashierView > .view-sub-header {
+  margin-top: 64px !important;
+}
+@media (max-width: 900px) {
+  #cashierView > .view-sub-header {
+    margin-top: 36px !important;
+  }
+}
+
+
+/* Final cashier station card spacing: increase top breathing room, preserve side inset */
+#cashierView > .view-sub-header {
+  margin: 104px 2.2vw 24px !important;
+  width: calc(100% - 4.4vw) !important;
+  border: 1px solid #754323 !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 900px) {
+  #cashierView > .view-sub-header {
+    margin: 64px 14px 20px !important;
+    width: calc(100% - 28px) !important;
+    border-color: #754323 !important;
+  }
+}
+
+
+/* Clear, intentional vertical gap above the cashier station card */
+#cashierView > .view-sub-header {
+  margin-top: 180px !important;
+}
+@media (max-width: 900px) {
+  #cashierView > .view-sub-header {
+    margin-top: 110px !important;
+  }
+}
+
+
+/* Correct cashier station spacing: keep the existing page/backdrop position,
+   and inset the station card inside the warm beige cashier canvas. */
+#cashierView {
+  box-sizing: border-box !important;
+  padding: 20px 2.2vw 24px !important;
+}
+#cashierView > .view-sub-header {
+  margin: 0 0 24px !important;
+  width: 100% !important;
+  padding: 16px 24px 18px !important;
+  border: 1px solid #754323 !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 900px) {
+  #cashierView {
+    padding: 16px 14px 20px !important;
+  }
+  #cashierView > .view-sub-header {
+    margin: 0 0 20px !important;
+    padding: 12px 16px !important;
+    width: 100% !important;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+/* Shift Receipts table: darken pale text for comfortable readability while
+   preserving the existing status badges and receipt button styling. */
+#cashierHistoryTableBody td {
+  color: #65432F !important;
+}
+#cashierHistoryTableBody td strong,
+#cashierHistoryTableBody td small,
+#cashierHistoryTableBody td .text-muted {
+  color: #65432F !important;
+}
+#cashierHistoryTableBody td .order-status-badge {
+  color: inherit;
+}
+#cashierHistoryTableBody td .status-pending {
+  color: #9A4B12 !important;
+}
+#cashierHistoryTableBody td .status-completed {
+  color: #526070 !important;
+}
+#cashierHistoryTableBody td .status-ready {
+  color: #168447 !important;
+}
+#cashierHistoryTableBody td .status-preparing {
+  color: #234DAA !important;
+}
+
+
+/* Executive Management Portal: add consistent breathing room around its contents */
+#adminView {
+  box-sizing: border-box !important;
+  padding: clamp(20px, 2vw, 32px) !important;
+}
+#adminView .admin-top-bar,
+#adminView .stats-grid,
+#adminView .admin-tabs-nav,
+#adminView .admin-tab-content {
+  box-sizing: border-box;
+}
+@media (max-width: 700px) {
+  #adminView {
+    padding: 16px !important;
+  }
+}
+
+
+/* Executive Management Portal catalog: inset the filter bar and inventory table
+   from the warm-brown content panel so they have clear inner margins. */
+#adminView .admin-tab-content.active {
+  padding: 18px 24px 26px !important;
+  box-sizing: border-box !important;
+}
+#adminView .admin-tab-content.active .admin-table-controls {
+  margin: 0 0 18px !important;
+}
+#adminView .admin-tab-content.active .table-container {
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 700px) {
+  #adminView .admin-tab-content.active {
+    padding: 14px 12px 18px !important;
+  }
+}
+
+
+/* Executive Management Portal tabs: softer rounded active state */
+#adminView .admin-tabs-nav {
+  align-items: center;
+  gap: 12px !important;
+  padding: 8px 10px !important;
+  border-bottom: 1px solid #8B451F !important;
+}
+#adminView .admin-tab-btn {
+  border: 1px solid transparent !important;
+  border-bottom: 1px solid transparent !important;
+  border-radius: 14px !important;
+  padding: 14px 22px !important;
+  background: transparent !important;
+  color: #87431F !important;
+  transition: background-color 180ms ease, color 180ms ease,
+              box-shadow 180ms ease, transform 180ms ease !important;
+}
+#adminView .admin-tab-btn:hover {
+  background: #F3E4D2 !important;
+  border-color: #D8B18A !important;
+}
+#adminView .admin-tab-btn.active {
+  background: linear-gradient(135deg, #8B451F, #713516) !important;
+  color: #E4AD69 !important;
+  border-color: #C98B4D !important;
+  box-shadow: 0 3px 0 #D9A15D, 0 5px 12px rgba(75, 36, 16, 0.12) !important;
+  border-bottom-color: #C98B4D !important;
+}
+#adminView .admin-tab-btn:focus-visible {
+  outline: 2px solid #D9A15D !important;
+  outline-offset: 3px !important;
+}
+@media (max-width: 700px) {
+  #adminView .admin-tabs-nav {
+    gap: 8px !important;
+    padding: 6px !important;
+  }
+  #adminView .admin-tab-btn {
+    border-radius: 12px !important;
+    padding: 10px 14px !important;
+  }
+}
+
+
+/* Staff Portal footer link: slightly smaller and without hover/click highlight */
+.site-footer-staff-link,
+.site-footer-staff-link:hover,
+.site-footer-staff-link:active,
+.site-footer-staff-link:focus {
+  font-size: 16px !important;
+  background: transparent !important;
+  color: #e2b27a !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+}
+
+
+/* Staff Portal footer link: reduce font size further */
+.site-footer-staff-link,
+.site-footer-staff-link:hover,
+.site-footer-staff-link:active,
+.site-footer-staff-link:focus {
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+}
+
+
+/* Customer order history: balanced two-column cards with improved readability */
+#guestOrdersView .guest-orders-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  max-width: none;
+  width: 100%;
+  align-items: stretch;
+}
+
+#guestOrdersView .guest-order-card {
+  color: #6B3A20;
+  border-color: #B87945;
+  padding: 1.5rem;
+}
+
+#guestOrdersView .order-card-header strong,
+#guestOrdersView .order-card-items,
+#guestOrdersView .guest-order-card > div:last-child strong {
+  color: #6B3A20;
+}
+
+#guestOrdersView .order-card-header small,
+#guestOrdersView .order-card-items small {
+  color: #89694F !important;
+}
+
+#guestOrdersView .order-card-items > div {
+  font-size: 0.95rem !important;
+}
+
+#guestOrdersView .guest-order-card .btn-outline {
+  color: #A8652C;
+  border-color: #C78B50;
+}
+
+@media (max-width: 900px) {
+  #guestOrdersView .guest-orders-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Darker subtitle on the customer Orders & Receipts page */
+#guestOrdersView .orders-header p {
+  color: #B87945;
+}
+
+
+/* Admin portal readability: deepen low-contrast labels and table content without changing layout. */
+#adminView, #adminView .admin-top-bar p, #adminView .stat-label,
+#adminView .stat-trend, #adminView .data-table td,
+#adminView .data-table td small, #adminView .text-muted,
+#adminView .admin-table-controls, #adminView .admin-tab-btn {
+  color: #68452F;
+}
+#adminView .data-table td strong,
+#adminView .stat-value,
+#adminView .admin-top-bar h2 { color: #321B12; }
+
+/* Cashier category filters use the same categories as the guest-facing menu. */
+#posCategoryTabs .pos-cat-btn { color: #70452D; }
+#posCategoryTabs .pos-cat-btn.active { color: #FFF8EF; }
+
+/* Order type filters and elapsed prep timers. */
+.queue-toolbar-actions { display:flex; align-items:center; gap:.65rem; flex-wrap:wrap; }
+.queue-toolbar-actions select, .order-audit-filters select {
+  min-height: 38px; padding: .45rem .75rem; border: 1px solid #A96A3D;
+  border-radius: 9px; background: #F5F0E8; color: #55311F; font: inherit;
+}
+.order-wait-timer {
+  display: inline-block; margin: .45rem 0; padding: .25rem .55rem;
+  border-radius: 7px; background: #F3E4D2; color: #75451F;
+  font-size: .78rem; font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.order-wait-timer.overdue { background: #FEE2E2; color: #B91C1C; }
+.order-audit-filters { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.pos-discount-entry { display:flex; gap:.5rem; align-items:center; margin:.65rem 0; }
+.pos-discount-entry input { min-width:0; flex:1; padding:.55rem .7rem; border:1px solid #B87945; border-radius:8px; background:#FFF9F1; color:#49372C; }
+
+/* Keep the original menu images, but give every product photo a consistent frame. */
+.menu-card-image-wrap { aspect-ratio: 4 / 3 !important; height:auto !important; background:#F5F0E8 !important; overflow:hidden; }
+.menu-card-image { width:100% !important; height:100% !important; object-fit:contain !important; object-position:center !important; }
+
+/* QR checkout should show the QR artwork cleanly without extra instruction blocks. */
+#qrPaymentFields .qr-payment-preview p,
+#guestQrPaymentPreview p { display:none !important; }
+#qrPaymentFields .qr-payment-preview,
+#guestQrPaymentPreview { padding:.5rem; border:0; background:transparent; }
+#qrPaymentFields .qr-payment-preview img,
+#guestQrPaymentPreview img { width:min(100%, 280px); max-height:300px; object-fit:contain; margin:.25rem auto; border-radius:0; }
+@media (max-width: 900px) {
+  .order-audit-filters { align-items:stretch; flex-direction:column; }
+}
+
+/* Admin header: one Dashboard action centered between brand and account controls. */
+@media (min-width: 901px) {
+  .header-container:has(.role-nav.admin-only-nav) { position: relative; }
+  .role-nav.admin-only-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+  }
+}
+@media (max-width: 900px) {
+  .role-nav.admin-only-nav { justify-content: center; }
+}
+
+/* Improve contrast for the amount due in the cashier/admin payment dialog. */
+.payment-amount-box h1 {
+  color: #2b1711 !important;
+  -webkit-text-fill-color: #2b1711;
+  text-shadow: none;
+}
+
+.payment-amount-box h1::selection,
+.payment-amount-box h1 *::selection {
+  color: #fff8ef;
+  -webkit-text-fill-color: #fff8ef;
+  background: #87421f;
+}
+
+/* Improve contrast for the Order Queue / Sales Audit label on the brown admin panel. */
+#adminView .order-audit-filters > strong {
+  color: #F7E8D6 !important;
+}
